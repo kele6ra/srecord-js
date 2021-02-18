@@ -1,0 +1,36 @@
+{
+  "name": "@rsispal/srecord-js",
+  "version": "1.0.0",
+  "description": "Motorola S-Record reader/writer",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:dev": "rm -rf ./dist && NODE_ENV='development' tsc",
+    "build": "rm -rf ./dist && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsispal/srecord-js.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "Rav Sispal",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/rsispal/srecord-js/issues"
+  },
+  "homepage": "https://github.com/rsispal/srecord-js#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.0",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/fs-extra": "^9.0.7",
+    "@types/node": "^14.14.28",
+    "fs-extra": "^9.1.0",
+    "semantic-release": "^17.3.9",
+    "typescript": "^4.1.5"
+  }
+}
