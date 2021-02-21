@@ -1,6 +1,6 @@
 {
   "name": "@rsispal/srecord-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Motorola S-Record reader/writer",
   "main": "dist/index.js",
   "scripts": {
