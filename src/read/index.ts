@@ -675,7 +675,8 @@ export const readS19 = (
         calculatedChecksum = calculateChecksum(
           parseHexString(
             S19File.substring(checksumPacketStartIndex, checksumPacketEndIndex)
-          )
+          ),
+          logLevel
         );
 
         if (checksum === calculatedChecksum) {

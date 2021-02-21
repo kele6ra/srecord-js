@@ -4,12 +4,6 @@
 import { calculateChecksum } from "../crc/";
 
 /* Utilities */
-import {
-  readSubstringAndCastAsNumber,
-  readSubstring,
-  parseHexString,
-  decToHex,
-} from "../utilities/";
 
 /* Types */
 import {
@@ -150,7 +144,7 @@ const produceS0Record = (
   ptr += dataLength;
 
   /* Checksum */
-  record[ptr] = calculateChecksum(record.slice(0, ptr));
+  record[ptr] = calculateChecksum(record.slice(0, ptr), logLevel);
 
   /* Final Assembly */
   srecord += record
