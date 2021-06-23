@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeS19 = void 0;
 /* CRC */
 var crc_1 = require("../crc/");
+/* Utilities */
 /* Types */
 var types_1 = require("../types/");
 /**
@@ -108,7 +109,7 @@ var produceS0Record = function (address, data, dataLength, logLevel) {
     data.copy(record, ptr, 0, dataLength);
     ptr += dataLength;
     /* Checksum */
-    record[ptr] = crc_1.calculateChecksum(record.slice(0, ptr));
+    record[ptr] = crc_1.calculateChecksum(record.slice(0, ptr), logLevel);
     /* Final Assembly */
     srecord += record
         .slice(0, ptr + 1)

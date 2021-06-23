@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculateChecksum = void 0;
-var types_1 = require("src/types");
+var types_1 = require("../types");
 var calculateChecksum = function (buffer, logLevel) {
     if (logLevel === void 0) { logLevel = types_1.LogLevel.NONE; }
     logLevel &&

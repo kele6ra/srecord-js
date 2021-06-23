@@ -1,4 +1,4 @@
-import { LogLevel } from "src/types";
+import { LogLevel } from "../types";
 
 export const calculateChecksum = (
   buffer: Buffer,

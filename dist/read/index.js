@@ -442,7 +442,7 @@ var readS19 = function (s19Data, s19DataLength, logLevel) {
                         throw new Error("Invalid record type: " + currentByte + nextByte);
                     }
                 }
-                calculatedChecksum = crc_1.calculateChecksum(utilities_1.parseHexString(S19File.substring(checksumPacketStartIndex, checksumPacketEndIndex)));
+                calculatedChecksum = crc_1.calculateChecksum(utilities_1.parseHexString(S19File.substring(checksumPacketStartIndex, checksumPacketEndIndex)), logLevel);
                 if (checksum === calculatedChecksum) {
                     logLevel > types_1.LogLevel.NONE && console.log("Checksum valid");
                     logLevel > types_1.LogLevel.NONE &&
