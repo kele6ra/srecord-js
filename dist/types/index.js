@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FullS9ByteLengths = exports.FullS5ByteLengths = exports.FullS3ByteLengths = exports.FullS2ByteLengths = exports.FullS1ByteLengths = exports.FullS0ByteLengths = exports.FullSRecordSizes = exports.FullSRecordMarker = exports.AddressSpaceBoundaries = exports.LogLevel = exports.ResponseCodes = void 0;
+exports.FullS9ByteLengths = exports.FullS7ByteLengths = exports.FullS5ByteLengths = exports.FullS3ByteLengths = exports.FullS2ByteLengths = exports.FullS1ByteLengths = exports.FullS0ByteLengths = exports.FullSRecordSizes = exports.FullSRecordMarker = exports.AddressSpaceBoundaries = exports.LogLevel = exports.ResponseCodes = void 0;
 /**
  * General Types
  */
@@ -87,6 +87,14 @@ var FullS5ByteLengths;
     FullS5ByteLengths[FullS5ByteLengths["ADDRESS_L"] = 4] = "ADDRESS_L";
     FullS5ByteLengths[FullS5ByteLengths["CHECKSUM_L"] = 2] = "CHECKSUM_L";
 })(FullS5ByteLengths = exports.FullS5ByteLengths || (exports.FullS5ByteLengths = {}));
+var FullS7ByteLengths;
+(function (FullS7ByteLengths) {
+    FullS7ByteLengths[FullS7ByteLengths["START_OF_RECORD_L"] = 1] = "START_OF_RECORD_L";
+    FullS7ByteLengths[FullS7ByteLengths["RECORD_TYPE_L"] = 1] = "RECORD_TYPE_L";
+    FullS7ByteLengths[FullS7ByteLengths["DATA_LENGTH_L"] = 2] = "DATA_LENGTH_L";
+    FullS7ByteLengths[FullS7ByteLengths["ADDRESS_L"] = 8] = "ADDRESS_L";
+    FullS7ByteLengths[FullS7ByteLengths["CHECKSUM_L"] = 2] = "CHECKSUM_L";
+})(FullS7ByteLengths = exports.FullS7ByteLengths || (exports.FullS7ByteLengths = {}));
 var FullS9ByteLengths;
 (function (FullS9ByteLengths) {
     FullS9ByteLengths[FullS9ByteLengths["START_OF_RECORD_L"] = 1] = "START_OF_RECORD_L";

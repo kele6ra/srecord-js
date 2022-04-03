@@ -98,6 +98,14 @@ export enum FullS5ByteLengths {
   CHECKSUM_L = 2,
 }
 
+export enum FullS7ByteLengths {
+  START_OF_RECORD_L = 1,
+  RECORD_TYPE_L = 1,
+  DATA_LENGTH_L = 2,
+  ADDRESS_L = 8,
+  CHECKSUM_L = 2,
+}
+
 export enum FullS9ByteLengths {
   START_OF_RECORD_L = 1,
   RECORD_TYPE_L = 1,

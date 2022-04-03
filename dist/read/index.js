@@ -368,9 +368,34 @@ var readS19 = function (s19Data, s19DataLength, logLevel) {
                     case "7".charCodeAt(0): {
                         sRecordType = types_1.FullSRecordMarker.S7_RECORD_TYPE;
                         dataLength = 0;
-                        address = 0;
+                        dataLengthIndex =
+                            i +
+                                types_1.FullS7ByteLengths.START_OF_RECORD_L +
+                                types_1.FullS7ByteLengths.RECORD_TYPE_L;
+                        dataLength = utilities_1.readSubstringAndCastAsNumber(S19File, dataLengthIndex, types_1.FullS7ByteLengths.DATA_LENGTH_L, 16);
+                        checksumPacketStartIndex = dataLengthIndex;
+                        /* Address */
+                        addressIndex =
+                            i +
+                                types_1.FullS7ByteLengths.START_OF_RECORD_L +
+                                types_1.FullS7ByteLengths.RECORD_TYPE_L +
+                                types_1.FullS7ByteLengths.DATA_LENGTH_L;
+                        address = utilities_1.readSubstringAndCastAsNumber(S19File, addressIndex, types_1.FullS7ByteLengths.ADDRESS_L, 16);
                         data = utilities_1.parseHexString("");
-                        checksum = 0;
+                        checksumIndex =
+                            i +
+                                types_1.FullS7ByteLengths.START_OF_RECORD_L +
+                                types_1.FullS7ByteLengths.RECORD_TYPE_L +
+                                types_1.FullS7ByteLengths.DATA_LENGTH_L +
+                                types_1.FullS7ByteLengths.ADDRESS_L;
+                        checksum = utilities_1.readSubstringAndCastAsNumber(S19File, checksumIndex, types_1.FullS7ByteLengths.CHECKSUM_L, 16);
+                        checksumPacketEndIndex = checksumIndex;
+                        fullRecordLength =
+                            types_1.FullS7ByteLengths.START_OF_RECORD_L +
+                                types_1.FullS7ByteLengths.RECORD_TYPE_L +
+                                types_1.FullS7ByteLengths.DATA_LENGTH_L +
+                                types_1.FullS7ByteLengths.ADDRESS_L +
+                                types_1.FullS7ByteLengths.CHECKSUM_L;
                         nS7++;
                         break;
                     }
@@ -443,7 +468,7 @@ var readS19 = function (s19Data, s19DataLength, logLevel) {
                     }
                 }
                 calculatedChecksum = crc_1.calculateChecksum(utilities_1.parseHexString(S19File.substring(checksumPacketStartIndex, checksumPacketEndIndex)), logLevel);
-                if (checksum === calculatedChecksum || address == 0) {
+                if (checksum === calculatedChecksum) {
                     logLevel > types_1.LogLevel.NONE && console.log("Checksum valid");
                     logLevel > types_1.LogLevel.NONE &&
                         console.log("----------------------------");

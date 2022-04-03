@@ -18,6 +18,7 @@ import {
   FullS1ByteLengths,
   FullS2ByteLengths,
   FullS3ByteLengths,
+  FullS7ByteLengths,
   FullS9ByteLengths,
   FullSRecordReferenceStructure,
   ResponseCodes,
@@ -564,9 +565,41 @@ export const readS19 = (
           case "7".charCodeAt(0): {
             sRecordType = FullSRecordMarker.S7_RECORD_TYPE;
             dataLength = 0;
-            address = 0;
+
+            dataLengthIndex =
+                i +
+                    FullS7ByteLengths.START_OF_RECORD_L +
+                    FullS7ByteLengths.RECORD_TYPE_L;
+            dataLength = readSubstringAndCastAsNumber(S19File, dataLengthIndex, FullS7ByteLengths.DATA_LENGTH_L, 16);
+            checksumPacketStartIndex = dataLengthIndex;
+
+            /* Address */
+            addressIndex =
+                i +
+                    FullS7ByteLengths.START_OF_RECORD_L +
+                    FullS7ByteLengths.RECORD_TYPE_L +
+                    FullS7ByteLengths.DATA_LENGTH_L;
+            address = readSubstringAndCastAsNumber(S19File, addressIndex, FullS7ByteLengths.ADDRESS_L, 16);
+
             data = parseHexString("");
-            checksum = 0;
+
+            checksumIndex =
+                i +
+                    FullS7ByteLengths.START_OF_RECORD_L +
+                    FullS7ByteLengths.RECORD_TYPE_L +
+                    FullS7ByteLengths.DATA_LENGTH_L +
+                    FullS7ByteLengths.ADDRESS_L ;
+            checksum = readSubstringAndCastAsNumber(S19File, checksumIndex, FullS7ByteLengths.CHECKSUM_L, 16);
+
+            checksumPacketEndIndex = checksumIndex;
+
+            fullRecordLength =
+            FullS7ByteLengths.START_OF_RECORD_L +
+                FullS7ByteLengths.RECORD_TYPE_L +
+                FullS7ByteLengths.DATA_LENGTH_L +
+                FullS7ByteLengths.ADDRESS_L +
+                FullS7ByteLengths.CHECKSUM_L;
+
             nS7++;
             break;
           }
@@ -679,7 +712,7 @@ export const readS19 = (
           logLevel
         );
 
-        if (checksum === calculatedChecksum || address == 0) {
+        if (checksum === calculatedChecksum) {
           logLevel > LogLevel.NONE && console.log("Checksum valid");
           logLevel > LogLevel.NONE &&
             console.log("----------------------------");
