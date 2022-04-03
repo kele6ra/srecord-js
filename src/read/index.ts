@@ -679,7 +679,7 @@ export const readS19 = (
           logLevel
         );
 
-        if (checksum === calculatedChecksum) {
+        if (checksum === calculatedChecksum || address == 0) {
           logLevel > LogLevel.NONE && console.log("Checksum valid");
           logLevel > LogLevel.NONE &&
             console.log("----------------------------");

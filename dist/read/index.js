@@ -443,7 +443,7 @@ var readS19 = function (s19Data, s19DataLength, logLevel) {
                     }
                 }
                 calculatedChecksum = crc_1.calculateChecksum(utilities_1.parseHexString(S19File.substring(checksumPacketStartIndex, checksumPacketEndIndex)), logLevel);
-                if (checksum === calculatedChecksum) {
+                if (checksum === calculatedChecksum || address == 0) {
                     logLevel > types_1.LogLevel.NONE && console.log("Checksum valid");
                     logLevel > types_1.LogLevel.NONE &&
                         console.log("----------------------------");
